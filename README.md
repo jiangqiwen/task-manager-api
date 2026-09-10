@@ -3,17 +3,32 @@ hainan~homework
 
 ![img.png](img/img.png)
 
+@[TOC](目录)
+
 # 一、本地开发环境搭建
 ## 1、git: Ubuntu 22.04 自带 (满足)
 ```ruby
 git --version
 git version 2.34.1
+git config --global user.name "你的名字"
+git config --global user.email "你的GitHub邮箱"
+git checkout main
+# 提交已有代码
+git add .
+git commit -m "chore: initial project setup"
+git push -u origin main
 ```
 安装所需的gitFlow
 ```shell
 sudo apt install git-flow
 # 在仓库里初始化：
 git flow init
+```
+规划后续task所需的分支
+```shell
+git checkout develop
+git merge main
+git push -u origin develop
 ```
 
 ## 2、Docker：（version 29.8.0 满足）
