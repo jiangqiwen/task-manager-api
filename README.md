@@ -29,6 +29,18 @@ git flow init
 git checkout develop
 git merge main
 git push -u origin develop
+
+# task分支
+git flow feature start health-check
+git add .
+git commit -m "feat(health): add health check endpoint"
+git push -u origin feature/health-check
+
+git checkout develop
+git flow feature start task-crud
+git add .
+git commit -m "feat(task): add task data model and CRUD endpoints"
+git push -u origin feature/task-crud
 ```
 
 ## 2、Docker：（version 29.8.0 满足）
