@@ -109,7 +109,6 @@ sudo systemctl restart docker
 docker info | grep -A 5 "Registry Mirrors"
 ```
 
-
 ## 3、python: 安装所需版本的选择3.12 （满足）
 ### 1. 安装必要工具
 ```shell
@@ -117,7 +116,7 @@ sudo apt update
 sudo apt install -y software-properties-common
 ```
 
-### 2. 添加 deadsnakes PPA
+### 2. 添加 deadsnakes PPA 三方库
 ```shell
 sudo add-apt-repository ppa:deadsnakes/ppa -y
 sudo apt update
@@ -131,3 +130,4 @@ sudo apt install -y python3.12 python3.12-venv python3.12-dev
 python3.12 --version
 Python 3.12.13
 ```
+
