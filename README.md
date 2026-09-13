@@ -131,8 +131,10 @@ python3.12 --version
 Python 3.12.13
 ```
 
-# 容器化
+# Task3:容器化
 ```
 docker build -t task-manager-api-task3 .
 docker compose up -d
 ```
+成功启动测试访问
+![alt text](./img/task3.png)
