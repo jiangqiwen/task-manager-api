@@ -17,7 +17,7 @@ def clean_storage():
 
 # ---------- /health ----------
 def test_health():
-    """健康检查返回 200 和 healthy"""
+    """ 健康检查返回 200 和 healthy """
     r = client.get("/health")
     print("\n[POST /tasks] 状态码:", r.status_code)
     print(json.dumps(r.json(), indent=2, ensure_ascii=False))
