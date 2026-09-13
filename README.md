@@ -74,7 +74,7 @@ sudo apt update
 ```
 ### 2.3、安装 Docker 最新版软件包
 ```shell
-sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
 ```
 ### 2.4、验证 Docker 是否正在运行：
 ```shell
@@ -131,3 +131,8 @@ python3.12 --version
 Python 3.12.13
 ```
 
+# 容器化
+```
+docker build -t task-manager-api-task3 .
+docker compose up -d
+```
