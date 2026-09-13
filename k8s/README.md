@@ -57,3 +57,25 @@ minikube service kubernetes-dashboard -n kubernetes-dashboard --url
 minikube version
 minikube version: v1.39.0
 ```
+
+## Task4 kubernetes 部署
+```shell
+minikube image load task-manager-api-task3
+minikube image ls | grep task-manager
+minikube kubectl -- apply -f k8s/
+
+minikube kubectl -- apply -f k8s/namespace.yaml
+minikube kubectl  -- get namespace
+minikube kubectl -- apply -f k8s/
+minikube kubectl -- get pods -n task-manager
+
+# 删除
+minikube kubectl -- delete -f k8s/
+```
+因为使用的是minikube所以需要把端口映射出来
+```shell
+ minikube kubectl -- port-forward -n task-manager svc/task-manager-api 8080:8080
+```
+测试访问（成功）
+![alt text](../img/task4.png)
+
