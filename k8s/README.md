@@ -79,3 +79,12 @@ minikube kubectl -- delete -f k8s/
 测试访问（成功）
 ![alt text](../img/task4.png)
 
+
+## task5 
+```shell
+docker pull ghcr.io/jiangqiwen/task-manager-api-task5:1.0.3
+minikube image load ghcr.io/jiangqiwen/task-manager-api-task5:1.0.3
+# 改 deployment.yaml 的 image
+# image: ghcr.io/jiangqiwen/task-manager-api-task5:1.0.3
+minikube kubectl -- apply -f k8s/deployment.yaml
+```
