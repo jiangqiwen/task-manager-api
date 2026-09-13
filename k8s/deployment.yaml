@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
         - name: api
-          image: task-manager-api-task3
+          # image: task-manager-api-task3
+          image: ghcr.io/jiangqiwen/task-manager-api-task5:1.0.4
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
