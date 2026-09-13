@@ -1,4 +1,6 @@
-# task-manager-api
+# Task Manager API
+
+![CI/CD Pipeline](https://github.com/jiangqiwen/task-manager-api/actions/workflows/ci.yml/badge.svg?branch=main)
 hainan~homework
 
 ![img.png](img/img.png)
