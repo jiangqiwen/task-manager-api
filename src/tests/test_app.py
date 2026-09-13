@@ -47,7 +47,7 @@ def test_create_task_success():
 
 
 def test_create_task_default_values():
-    """只传 title，其余字段使用默认值"""
+    """ 只传 title，其余字段使用默认值 """
     r = client.post("/tasks", json={"title": "默认测试"})
     print("\n[POST /tasks] 状态码:", r.status_code)
     print(json.dumps(r.json(), indent=2, ensure_ascii=False))
@@ -58,7 +58,7 @@ def test_create_task_default_values():
 
 
 def test_create_task_empty_title():
-    """空 title 返回 400"""
+    """ 空 title 返回 400 """
     r = client.post("/tasks", json={"title": ""})
     print("\n[POST /tasks] 状态码:", r.status_code)
     print(json.dumps(r.json(), indent=2, ensure_ascii=False))
