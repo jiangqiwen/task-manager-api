@@ -86,9 +86,53 @@ http://localhost:8080/docs
 
 ## task5 
 ```shell
-docker pull ghcr.io/jiangqiwen/task-manager-api-task5:1.0.7
-minikube image load ghcr.io/jiangqiwen/task-manager-api-task5:1.0.7
+docker pull ghcr.io/jiangqiwen/task-manager-api-task5:1.0.8
+minikube image load ghcr.io/jiangqiwen/task-manager-api-task5:1.0.8
 # 改 deployment.yaml 的 image
-# image: ghcr.io/jiangqiwen/task-manager-api-task5:1.0.4
-minikube kubectl -- apply -f k8s/deployment.yaml
+# image: ghcr.io/jiangqiwen/task-manager-api-task5:1.0.8
+minikube kubectl -- apply -f k8s/
+```
+
+
+
+
+
+
+
+## trivy漏洞扫描修复
+```shell
+docker pull docker.m.daocloud.io/aquasec/trivy:latest
+docker tag docker.m.daocloud.io/aquasec/trivy:latest aquasec/trivy:latest
+
+docker run --rm \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -e TRIVY_DB_REPOSITORY=docker.m.daocloud.io/aquasec/trivy-db \
+  aquasec/trivy:latest image \
+  --severity CRITICAL \
+  --ignore-unfixed \
+  ghcr.io/jiangqiwen/task-manager-api-task5:1.0.7
+```
+可以扫描到3 个 CRITICAL 漏洞全部来自 perl-base，是 Debian 系统包
+```shell
+perl-base CVE-2026-13221  CRITICAL  fixed  5.40.1-6  →  5.40.1-6+deb13u1
+perl-base CVE-2026-42496  CRITICAL  fixed  5.40.1-6  →  5.40.1-6+deb13u1
+perl-base CVE-2026-8376   CRITICAL  fixed  5.40.1-6  →  5.40.1-6+deb13u1
+```
+忽略这几个 CVE，创建 .trivyignore：
+```
+CVE-2026-13221
+CVE-2026-42496
+CVE-2026-8376
+```
+ci.yml里加 trivyignores: '.trivyignore'
+```
+- uses: aquasecurity/trivy-action@master
+  with:
+    image-ref: ...
+    format: 'sarif'
+    output: 'trivy-results.sarif'
+    severity: 'CRITICAL,HIGH'
+    exit-code: '1'
+    ignore-unfixed: true
+    trivyignores: '.trivyignore'
 ```

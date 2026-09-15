@@ -13,8 +13,8 @@ curl -i http://localhost:8080/health
 # 验证 ------ post /tasks 创建 ------
 curl -s -X POST http://localhost:8080/tasks \
   -H "Content-Type: application/json" \
-  -d '{"title":"CREATE","description":"实现 Task API","status":"todo"}' \
-  | python3 -m json.tool
+  -d '{"title":"CREATE","description":"创建 Task API","status":"todo"}' \
+  | python3 -m json.tool  --no-ensure-ascii
 
 curl -i -X POST http://localhost:8080/tasks \
   -H "Content-Type: application/json" \
@@ -27,12 +27,12 @@ curl -s -X POST http://localhost:8080/tasks \
   -d '{"title":"原始标题","description":"原始描述"}' \
   | python3 -m json.tool --no-ensure-ascii
 
-# 查询 
+# 查询所有任务列表
 curl -s http://localhost:8080/tasks | python3 -m json.tool --no-ensure-ascii
 # 根据id查询
-curl -i http://localhost:8080/tasks/168c5d10-3d7d-44e1-900b-eac7865b639f
+curl -i http://localhost:8080/tasks/168c5d10-3d7d-44e1-900b-eac7865b639f | python3 -m json.tool --no-ensure-ascii
 # 再修改
-curl -i -X PUT http://localhost:8080/tasks/168c5d10-3d7d-44e1-900b-eac7865b639f \
+curl -i -X PUT http://localhost:8080/tasks/e022ded8-dee3-42bd-81ca-dea60dddb75b \
   -H "Content-Type: application/json" \
   -d '{"title":"新标题","status":"in_progress"}'
 
